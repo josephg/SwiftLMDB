@@ -76,7 +76,9 @@ public enum LMDBError: Error {
             
         default: self = .other(returnCode: returnCode)
         }
-
     }
     
+    static func check(_ result: Int32) throws {
+        if result != 0 { throw LMDBError(returnCode: result) }
+    }
 }
